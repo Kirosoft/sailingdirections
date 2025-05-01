@@ -1,0 +1,3 @@
+openai
+elasticsearch==8.10.1
+python-dotenv
