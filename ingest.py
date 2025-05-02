@@ -201,6 +201,44 @@ def lexical_search(es: Elasticsearch, index_name: str, term: str) -> list[dict]:
         results.append({"section_id": src['section_id'], "title": src['title'], "matched_in": matched, "score": h['_score']})
     return results
 
+# ——— Hybrid search —————————————————————————————————————————————
+
+def hybrid_search(es: Elasticsearch, index_name: str, query: str, alpha: float = 0.5, k: int = 5) -> list[dict]:
+    """
+    Perform a hybrid search combining semantic vector score and lexical match score.
+    `alpha` controls balance: 0 = pure lexical, 1 = pure semantic.
+    """
+    # 1) embed query
+    qv = embed(query)
+    body = {
+        "size": k,
+        "query": {
+            "script_score": {
+                "query": {
+                    "bool": {
+                        "should": [
+                            {"match_phrase": {"content": {"query": query, "boost": 1-alpha}}},
+                            {"nested": {"path": "features", "query": {"match_phrase": {"features.name": {"query": query, "boost": 1-alpha}}}}}
+                        ]
+                    }
+                },
+                "script": {
+                    "source": "(cosineSimilarity(params.query_vector, 'content_vector') + 1.0) * params.alpha + _score * (1 - params.alpha)",
+                    "params": {"query_vector": qv, "alpha": alpha}
+                }
+            }
+        }
+    }
+    res = es.search(index=index_name, body=body)
+    results = []
+    for h in res['hits']['hits']:
+        results.append({
+            "section_id": h['_source']['section_id'],
+            "title": h['_source']['title'],
+            "score": h['_score']
+        })
+    return results
+
 # ——— Main entrypoint —————————————————————————————————————————————
 
 if __name__ == "__main__":
@@ -209,16 +247,22 @@ if __name__ == "__main__":
 
     secs = parse_and_chunk(raw)
     ensure_index(es, ES_INDEX_NAME)
-    index_sections(es, secs, ES_INDEX_NAME)
+    #index_sections(es, secs, ES_INDEX_NAME)
 
     print("\n-- Semantic Search Example --")
-    for r in semantic_search(es, ES_INDEX_NAME, "Crowninshield Point", k=3):
+    for r in semantic_search(es, ES_INDEX_NAME, "Bar Island", k=3):
         print(f"[{r['section_id']}] {r['title']} (score {r['score']:.3f})")
 
     print("\n-- Geo Search Example (DMS) --")
-    for r in geo_search_dms(es, ES_INDEX_NAME, "441730N 681464W", "5km"):
+    # bar island coords: 441543N 682744W
+    for r in geo_search_dms(es, ES_INDEX_NAME, "441543N 682744W", "0.5km"):
         print(f"Section {r['section_id']} with features {r['features']}")
 
-    print("\n-- Lexical Search Example --")
-    for r in lexical_search(es, ES_INDEX_NAME, "Crowninshield Point"):
+    print("-- Lexical Search Example --")
+    for r in lexical_search(es, ES_INDEX_NAME, "Bar Island"):
         print(f"[{r['section_id']}] {r['title']} matched in {r['matched_in']} (score {r['score']:.3f})")
+
+    # Hybrid search example
+    print("-- Hybrid Search Example --")
+    for r in hybrid_search(es, ES_INDEX_NAME, "Bar Island", alpha=0.7, k=5):
+        print(f"[{r['section_id']}] {r['title']} (score {r['score']:.3f})")
