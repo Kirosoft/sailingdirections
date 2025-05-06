@@ -90,20 +90,16 @@ Ram Island. The passage that leads between Ram Island (442947N 673786W), not to 
 
 2.12 Directions
 
-West approach to Moosabec Reach. The W end of Moosabec Reach can be approached either through the passage that leads between Outer Sand Island, Drisko Island and Stevens Island on the E and Flat Island and Plummer Island on the W, or through Tibbett Narrows (442960N 674243W). Tibbett Narrows is a narrow channel, the NE entrance of which is marked by No 27 Light Buoy (port hand) and No 28 Buoy (starboard hand), leading between Tibbett Island (442970N 674275W) and Ram Island (442948N 674235W) (2.10). These narrows are  
-3⁄4 cable wide at the narrowest part with a least depth of 11 m (36 ft).  
+West approach to Moosabec Reach. The W end of Moosabec Reach can be approached either through the passage that leads between Outer Sand Island, Drisko Island and Stevens Island on the E and Flat Island and Plummer Island on the W, or through Tibbett Narrows (442960N 674243W). Tibbett Narrows is a narrow channel, the NE entrance of which is marked by No 27 Light Buoy (port hand) and No 28 Buoy (starboard hand), leading between Tibbett Island (442970N 674275W) and Ram Island (442948N 674235W) (2.10). These narrows are  3⁄4 cable wide at the narrowest part with a least depth of 11 m (36 ft).  
 Caution. There are patches, with depths of 82 and 76 m (27 and 25 ft), 31⁄2 cables ENE and 3 cables ENE of the E point of Tibbett Island. West part of Moosabec Reach. From a position  
 NE of Shabbit Island (443038N 674104W) the track through the W part of Moosabec Reach, which is marked by light buoys (lateral), leads ENE, passing:  
-3 SSE of the entrance to Wohoa Bay (443150N 674100W), into which flow West River and Indian River, thence:  
+SSE of the entrance to Wohoa Bay (443150N 674100W), into which flow West River and Indian River, thence:  
 NNW of Shabbit Island Ledge (443070N 674044W), which dries 34 m (11 ft) and is marked by No 23 Buoy (port hand), thence:  
-4 Between Fessenden Ledge (443110N 673997W) and the N point of Hardwood Island. The former dries 03 m (1 ft) and is marked by No 22 Light Buoy (starboard hand).  
-The latter is wooded and has a house on its N point. A shoal, marked by No 21 Buoy (port  
-hand), extends 3 cables NE from the island.  
+Between Fessenden Ledge (443110N 673997W) and the N point of Hardwood Island. The former dries 03 m (1 ft) and is marked by No 22 Light Buoy (starboard hand).  
+The latter is wooded and has a house on its N point. A shoal, marked by No 21 Buoy (port hand), extends 3 cables NE from the island.  
 Thence:  
-5 Between No 20 Buoy (starboard hand) and Pomp Island (443110N 673997W), wooded. No 4 Beacon marks a rock 11⁄2 cables W of the N point of Pomp Island.  
-Thence to Beals Island Bridge (443148N 673688W), spanning Moosabec Reach, linking  
-Jonesport to Beals. For further details of this area see  
-Nova Scotia and Bay of Fundy Pilot.
+Between No 20 Buoy (starboard hand) and Pomp Island (443110N 673997W), wooded. No 4 Beacon marks a rock 11⁄2 cables W of the N point of Pomp Island.  
+Thence to Beals Island Bridge (443148N 673688W), spanning Moosabec Reach, linking  Jonesport to Beals. For further details of this area see  Nova Scotia and Bay of Fundy Pilot.
 
 2.13 Anchorage
 
@@ -118,9 +114,9 @@ Island, 11⁄4 miles W.
 Navigation at night. As there are no lighted aids to navigation N of Nash Island, a vessel should not enter the harbour at night. Navigation in the bay should present no difficulty by day in good visibility. Ice obstructs navigation in the Pleasant River from December to April. In ordinary winters, ice that forms in the bay is swept out by the tide.  
 **Directions**. From a position SW of Nash Island (442785N 674475W) the route to the anchorages in Pleasant Bay leads N, passing:  
 W of NI Light Buoy (safe water) (442786N 674548W). The tower of a disused lighthouse stands on the W end of Nash Island. Thence:  
-4 W of Pot Rock (442877N 674507W), which is 18 m (6 ft) in height and bare, and:  
+W of Pot Rock (442877N 674507W), which is 18 m (6 ft) in height and bare, and:  
 E of Coles Ledge (442874N 674652W) which is 3 cables E of Flint Island (442860N 674725W), a wooded island 23 m (76 ft) in height and wildlife sanctuary. The ledge is marked by C1 Buoy (port hand). Thence:  
-5 Between Norton Island Ledge (442967N 674580W) and the E extremity of Dyer  
+Between Norton Island Ledge (442967N 674580W) and the E extremity of Dyer  
 Island (442992N 674842W), 11⁄4 miles W. Dyer Island is separated from Flint Island to the S by Flint Island Narrows (442884N 674770W), a deep but narrow passage 1 cable wide, the S side of which is marked by C1 Buoy (port hand). The passage should not be used without local knowledge. Thence proceed as necessary to the anchorages.  
 **Anchorages**.  The best anchorage in 4 to 5 m (13 to 16 ft), which is used most frequently, is situated SE and E of Birch Islands (443200N 674580W), 4 miles N of Nash Island.  
 Anchorage may also be found in 9 to 11 m (30 to 36 ft), W of Nightcap Island (443119N 674555W), 31⁄2 miles N of Nash Island. In an emergency at night, anchorage may be obtained 21⁄4 miles NNW of Nash Island, close inside the entrance to the bay, in 18 m (59 ft).
