@@ -66,14 +66,28 @@ def llm_extract_features(text: str) -> list[dict]:
     Use LLM to extract features with DMS coords, returning [{name, location:{lat,lon}}].
     Graceful fallback if parse errors.
     """
-    sys_msg = (
-        "You are a geospatial parser. Extract geographic features and DMS coords"
-        " as JSON array of {name:string, coords:string}" )
+    system_msg = (
+        "You are a geospatial parser. Extract all geographic features and their DMS coordinates "
+        "in the form HHMMSSN HHMMSSW as a JSON array of objects {name: string, coords: string}."
+        "A compass prefix before a feature name should be combined to form a new feature name e.g."
+        "N of Bold Island -> 'N of Bold Island' would be the feature name."
+        "Southern Mark Island Ledge -> 'Southern Mark Island Ledge' would be the feature name."
+        "Moose Peak Light (white tower, 17 m in height) (442847N 673192W) -> Moose Peak Light (white tower, 17 m in height) would be the feature name."
+        "SW extremity of Great Wass Island (442900N 673550W) -> SW extremity of Great Wass Island is the feature name."
+        "Fisherman Island (442685N 673660W) and Browney Island (442772N 673712W) -> 'Fisherman Island' and 'Browney Island' are the feature names."
+        "W side of the bay Black Rock (442625N 674275W) -> 'W side of the bay Black Rock' is the feature name."
+        "or through Tibbett Narrows (442960N 674243W) -> 'Tibbett Narrows' is the feature name."
+        "between Petit Manan Point (442370N 675398W) and Dyer Point (442471N 675593W) -> 'Petit Manan Point' , 'Dyer Point' are the feature names."
+        "between Cranberry Point (442312N 675900W) and Spruce Point (442141N 680165W) -> 'Cranberry Point' , 'Spruce Point' are the feature names."
+        "Sally Island (442406N 675677W) and Sheep Island (442385N 675731W) -> 'Sally Island' , 'Sheep Island' are the feature names."
+        "between Dye r Point (2.21) and Youngs Point (442397N 675759W) -> 'Dye r Point' , 'Youngs Point' are the feature names."
+        " Do not use 'and' in feature names"
+    )
     usr_msg = f"Extract features from text:\n{text}"
     try:
         resp = openai_client.chat.completions.create(
             model="gpt-4o-mini",
-            messages=[{"role":"system","content":sys_msg},
+            messages=[{"role":"system","content":system_msg},
                       {"role":"user","content":usr_msg}],
             temperature=0
         )
