@@ -78,4 +78,13 @@ Desktop.ini
 # Local settings
 *.env
 
+# e-NP markdown files
+e-NP*.md
+
+# sailingdirection-dotnet build artifacts
+sailingdirection-dotnet/*
+sailingdirections.sln
+sailingdirections.csproj
+
+
 
