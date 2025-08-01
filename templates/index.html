@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sailing Directions Web App</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        #container { display: flex; height: 100vh; }
+        #menu { width: 220px; background: #f0f0f0; padding: 20px; box-sizing: border-box; }
+        #map-pane { flex: 2; }
+        #directions-pane { width: 350px; background: #fafafa; padding: 20px; box-sizing: border-box; border-left: 1px solid #ddd; overflow-y: auto; }
+        h2 { margin-top: 0; }
+        .waypoint-list { margin: 10px 0; padding: 0; list-style: none; }
+        .waypoint-list li { margin-bottom: 5px; }
+        button { margin-top: 10px; }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="menu">
+        <h2>Route Menu</h2>
+        <form id="route-form">
+            <label>Waypoints (lat,lon):</label>
+            <ul class="waypoint-list" id="waypoint-list"></ul>
+            <input type="text" id="lat" placeholder="Latitude" size="8">
+            <input type="text" id="lon" placeholder="Longitude" size="8">
+            <button type="button" onclick="addWaypoint()">Add Waypoint</button>
+            <button type="button" onclick="clearWaypoints()">Clear</button>
+            <button type="button" onclick="submitRoute()">Show Route</button>
+        </form>
+    </div>
+    <div id="map-pane">
+        {{ map_html|safe }}
+    </div>
+    <div id="directions-pane">
+        <h2>Sailing Directions</h2>
+        <div id="directions-text">{{ sailing_directions }}</div>
+    </div>
+</div>
+<script>
+let waypoints = [];
+function addWaypoint() {
+    const lat = parseFloat(document.getElementById('lat').value);
+    const lon = parseFloat(document.getElementById('lon').value);
+    if (!isNaN(lat) && !isNaN(lon)) {
+        waypoints.push([lat, lon]);
+        updateWaypointList();
+        document.getElementById('lat').value = '';
+        document.getElementById('lon').value = '';
+    }
+}
+function clearWaypoints() {
+    waypoints = [];
+    updateWaypointList();
+}
+function updateWaypointList() {
+    const ul = document.getElementById('waypoint-list');
+    ul.innerHTML = '';
+    waypoints.forEach((pt, idx) => {
+        const li = document.createElement('li');
+        li.textContent = `${pt[0].toFixed(4)}, ${pt[1].toFixed(4)}`;
+        ul.appendChild(li);
+    });
+}
+function submitRoute() {
+    if (waypoints.length < 2) {
+        alert('Please add at least two waypoints.');
+        return;
+    }
+    fetch('/api/route', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ waypoints: waypoints })
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        if (data.refined) {
+            // For demo, just reload the page (in production, update map dynamically)
+            location.reload();
+        }
+    });
+}
+// Listen for messages from the map iframe (ALT+click events)
+window.addEventListener('message', function(event) {
+    if (event.data && event.data.alt && typeof event.data.lat === 'number' && typeof event.data.lng === 'number') {
+        console.log('Received ALT+click from map iframe:', event.data);
+        document.getElementById('lat').value = event.data.lat.toFixed(6);
+        document.getElementById('lon').value = event.data.lng.toFixed(6);
+    }
+});
+</script>
+</body>
+</html>
+

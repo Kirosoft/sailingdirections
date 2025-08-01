@@ -1,3 +1,18 @@
+def get_passage_plan_bucks_to_somes():
+    """
+    Returns a passage plan (list of waypoints) for a ship from Bucks Harbour to Somes Sound.
+    Bucks Harbour: 44.3367, -68.7425
+    Somes Sound: 44.3333, -68.3117
+    """
+    # Waypoints chosen to avoid land and follow a safe channel
+    return [
+        (44.3367, -68.7425),  # Bucks Harbour
+        (44.3400, -68.7000),  # Off Pond Island
+        (44.3400, -68.6500),  # Off Black Island
+        (44.2700, -68.5000),  # Off Swans Island (north of)
+        (44.3000, -68.3500),  # Off Bear Island
+        (44.3333, -68.3117)   # Somes Sound
+    ]
 
 import os
 from dotenv import load_dotenv
@@ -26,7 +41,7 @@ if __name__=="__main__":
             print(f"Indexed {len(secs)} sections with features into {ES_INDEX_NAME} and {ES_FEATURES_INDEX}")
     else:
         print(f"Skipping re-indexing, using existing indices {ES_INDEX_NAME} and {ES_FEATURES_INDEX}")
-        
+
     print("\n-- Semantic Search --")
     for r in semantic_search(es,ES_INDEX_NAME,"Bar Island",k=3): print(r)
     print("\n-- Geo Search (DMS) --")
@@ -37,13 +52,8 @@ if __name__=="__main__":
     for r in hybrid_search(es,ES_INDEX_NAME,"Bar Island",alpha=0.7,k=5): print(r)
 
 
-        # A ship passage from near Southampton, UK towards Cherbourg, France.
-    # Note: Coordinates are (latitude, longitude)
-    ship_passage_latlon = [
-        (50.8, -1.3),  # Near Southampton
-        (50.5, -1.4),
-        (49.8, -1.6)   # Near Cherbourg
-    ]
+    # A ship passage from Bucks Harbour to Somes Sound (with safe waypoints)
+    ship_passage_latlon = get_passage_plan_bucks_to_somes()
 
     # Set the desired distance between points in kilometers.
     distance_between_points_km = 10.0
